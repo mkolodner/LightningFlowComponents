@@ -16,6 +16,8 @@ export default class Hierarchy extends LightningElement {
   @api title;
   @api colNameApi;
   @api preselectedRow = [];
+  
+  @api outputSelectedRow;
 
   //Private Property
   @track error;
@@ -70,6 +72,11 @@ export default class Hierarchy extends LightningElement {
     const selectedRows = event.detail.selectedRows;
     for (let i = 0; i < selectedRows.length; i++) {
       this.preselectedRow.push(selectedRows[i].Id);
+    }
+    if (this.preselectedRow.length == 1) {
+      this.outputSelectedRow = this.preselectedRow[0];
+    } else {
+      this.outputSelectedRow = null;
     }
   }
   /**
